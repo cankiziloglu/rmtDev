@@ -1,0 +1,21 @@
+## Things to do in the app
+
+- [x] fetch job items
+- [x] create context for variables
+- [x] display job items in sidebar (mapping)
+- [x] show spinner when loading
+- [x] paginate job items
+- [ ] write job item id to url
+- [ ] read job item id from url
+- [ ] fetch job item from id
+- [ ] display job item details
+- [ ] show spinner when loading job item
+- [ ] show active job item in the list
+- [x] show number of results
+- [x] debounce search text
+- [x] display errors on page with toast
+- [x] sort job items
+- [ ] bookmarking job items
+- [ ] persisting bookmarks
+- [ ] creating the bookmarks popover
+- [ ] close popover when clicked outside

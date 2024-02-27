@@ -11,7 +11,6 @@ type JobItemsContextType = {
   page: number;
   setPage: (page: number) => void;
   spinner: boolean;
-  error: Error | null;
   jobs: Job[];
   totalNumberOfResults: number;
 };
@@ -28,7 +27,7 @@ export default function JobItemsContextProvider({
   const [page, setPage] = useState(1);
 
   const debouncedSearchText = useDebounce(searchText);
-  const { isLoading, data, error } = useGetJobs(debouncedSearchText);
+  const { isLoading, data } = useGetJobs(debouncedSearchText);
 
   const sortJobItems = (jobItems: Job[], sortBy: string) => {
     if (sortBy === 'relevant')
@@ -60,7 +59,6 @@ export default function JobItemsContextProvider({
         page,
         setPage,
         spinner,
-        error: error as Error | null,
         jobs,
         totalNumberOfResults,
       }}

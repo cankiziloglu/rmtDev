@@ -1,12 +1,11 @@
-import { AxiosError } from 'axios';
+
 import { useGetJobItem, useJobIdContext } from '../lib/hooks';
 import BookmarkIcon from './BookmarkIcon';
-import toast from 'react-hot-toast';
 import { JobItem } from '../lib/types';
 
 export default function JobItemContent() {
   const { jobId } = useJobIdContext();
-  const { isLoading, error, data } = useGetJobItem(jobId || 0) || {};
+  const { isLoading, data } = useGetJobItem(jobId || 0) || {};
   const jobItem = data as JobItem | undefined;
 
   {
@@ -15,10 +14,7 @@ export default function JobItemContent() {
   {
     if (isLoading) return <SpinnerContent />;
   }
-  {
-    error && toast((error as AxiosError).message);
-  }
-
+  
   {
     if (!jobItem) return <EmptyJobContent />;
   }
@@ -38,7 +34,7 @@ export default function JobItemContent() {
             <div className='job-info__below-badge'>
               <time className='job-info__time'>{jobItem.daysAgo}d</time>
 
-              <BookmarkIcon />
+              <BookmarkIcon jobId={jobItem.id} />
             </div>
           </div>
 

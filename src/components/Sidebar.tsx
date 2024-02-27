@@ -7,7 +7,7 @@ import SortingControls from './SortingControls';
 
 export default function Sidebar() {
   
-  const { spinner, error, jobs, totalNumberOfResults } = useJobItemsContext();
+  const { spinner, jobs, totalNumberOfResults } = useJobItemsContext();
 
   return (
     <div className='sidebar'>
@@ -15,7 +15,7 @@ export default function Sidebar() {
         <ResultsCount totalNumberOfResults={totalNumberOfResults} />
         <SortingControls />
       </div>
-      <JobList spinner={spinner} err={error as Error | null} jobs={jobs} />
+      <JobList spinner={spinner} jobs={jobs} />
       <PaginationControls totalPages={totalNumberOfResults / PER_PAGE}/>
     </div>
   );

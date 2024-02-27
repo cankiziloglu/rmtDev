@@ -17,10 +17,11 @@ export default function JobListItem({ job }: { job: Job }) {
         </div>
 
         <div className='job-item__right'>
-          <BookmarkIcon />
+          <BookmarkIcon jobId={job.id} />
           <time className='job-item__time'>{job.daysAgo}d</time>
         </div>
       </a>
     </li>
   );
 }
+ 

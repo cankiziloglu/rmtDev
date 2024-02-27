@@ -15,7 +15,8 @@
 - [x] debounce search text
 - [x] display errors on page with toast
 - [x] sort job items
-- [ ] bookmarking job items
-- [ ] persisting bookmarks
-- [ ] creating the bookmarks popover
-- [ ] close popover when clicked outside
+- [x] bookmarking job items
+- [x] persisting bookmarks
+- [x] creating the bookmarks popover
+- [x] close popover when clicked outside
+- [x] create portal for popover

@@ -1,8 +1,7 @@
-
-import { useJobItemStore } from '../stores/JobItemStore';
+import { useJobItemsContext } from '../lib/hooks';
 
 export default function SearchForm() {
-  const searchText = useJobItemStore((state) => state.searchText);
+  const { searchText, setSearchText } = useJobItemsContext();
 
   return (
     <form onSubmit={(e) => e.preventDefault} action='#' className='search'>
@@ -12,7 +11,7 @@ export default function SearchForm() {
 
       <input
         value={searchText}
-        onChange={(e) => useJobItemStore.setState({ searchText: e.target.value })}
+        onChange={(e) => setSearchText(e.target.value)}
         spellCheck='false'
         type='text'
         required

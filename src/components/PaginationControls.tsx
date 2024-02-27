@@ -1,9 +1,12 @@
 import { ArrowLeftIcon, ArrowRightIcon } from '@radix-ui/react-icons';
-import { useJobItemStore } from '../stores/JobItemStore';
+import { useJobItemsContext } from '../lib/hooks';
 
-export default function PaginationControls() {
-  const page = useJobItemStore((state) => state.page);
-  const totalPages = useJobItemStore((state) => state.getTotalPages());
+export default function PaginationControls({
+  totalPages,
+}: {
+  totalPages: number;
+}) {
+  const { page, setPage } = useJobItemsContext();
 
   return (
     <section className='pagination'>
@@ -12,7 +15,7 @@ export default function PaginationControls() {
           page === 1 && 'pagination__button--hidden'
         }`}
         onClick={(e) => {
-          useJobItemStore.setState({ page: page - 1 });
+          setPage(page - 1);
           e.currentTarget.blur();
         }}
       >
@@ -23,7 +26,7 @@ export default function PaginationControls() {
           page > totalPages && 'pagination__button--hidden'
         }`}
         onClick={(e) => {
-          useJobItemStore.setState({ page: page + 1 });
+          setPage(page + 1);
           e.currentTarget.blur();
         }}
       >

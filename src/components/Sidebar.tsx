@@ -1,19 +1,13 @@
-import { useDebounce, useGetJobs } from '../lib/hooks';
-import { useJobItemStore } from '../stores/JobItemStore';
+import { PER_PAGE } from '../lib/constants';
+import { useJobItemsContext } from '../lib/hooks';
 import JobList from './JobList';
 import PaginationControls from './PaginationControls';
 import ResultsCount from './ResultsCount';
 import SortingControls from './SortingControls';
 
 export default function Sidebar() {
-  const searchText = useJobItemStore((state) => state.searchText);
-  const setJobItems = useJobItemStore((state) => state.setJobItems);
-  const debouncedSearchText = useDebounce(searchText);
-  const { isLoading, data, error } = useGetJobs(debouncedSearchText);
-  setJobItems(data || []);
-
-  const spinner = isLoading && Boolean(searchText);
-  const totalNumberOfResults = data?.length || 0;
+  
+  const { spinner, error, jobs, totalNumberOfResults } = useJobItemsContext();
 
   return (
     <div className='sidebar'>
@@ -21,8 +15,8 @@ export default function Sidebar() {
         <ResultsCount totalNumberOfResults={totalNumberOfResults} />
         <SortingControls />
       </div>
-      <JobList spinner={spinner} err={error as Error | null} />
-      <PaginationControls />
+      <JobList spinner={spinner} err={error as Error | null} jobs={jobs} />
+      <PaginationControls totalPages={totalNumberOfResults / PER_PAGE}/>
     </div>
   );
 }

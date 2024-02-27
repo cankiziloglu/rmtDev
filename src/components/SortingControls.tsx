@@ -1,11 +1,11 @@
-import { useJobItemStore } from '../stores/JobItemStore';
+import { useJobItemsContext } from '../lib/hooks';
 
 export default function SortingControls() {
-  const handleSort = (sortBy: string) => {
-    useJobItemStore.setState({ sortBy });
-  };
+  const { sortBy, setSortBy } = useJobItemsContext();
 
-  const sortBy = useJobItemStore((state) => state.sortBy);
+  const handleSort = (sortBy: string) => {
+    setSortBy(sortBy);
+  };
 
   return (
     <section className='sorting'>
